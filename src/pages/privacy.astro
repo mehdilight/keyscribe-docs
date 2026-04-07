@@ -1,0 +1,177 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Privacy Policy - KeyScribe">
+  <div class="privacy">
+    <h1>Privacy Policy</h1>
+    <p class="updated">Last updated: April 7, 2026</p>
+
+    <section>
+      <h2>Overview</h2>
+      <p>
+        KeyScribe is an offline-first encrypted notes app for Android.
+        Your privacy is fundamental to how KeyScribe is built — not an afterthought.
+      </p>
+    </section>
+
+    <section>
+      <h2>Data Collection</h2>
+      <p><strong>KeyScribe does not collect, transmit, or store any user data on external servers.</strong></p>
+      <ul>
+        <li>No accounts or sign-ups required</li>
+        <li>No analytics or tracking</li>
+        <li>No advertising</li>
+        <li>No cloud storage or sync</li>
+        <li>No internet connection required</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Data Storage</h2>
+      <p>All data is stored locally on your device:</p>
+      <ul>
+        <li><strong>Notes</strong> — Encrypted with AES-256-GCM and stored in a local SQLite database</li>
+        <li><strong>Encryption keys</strong> — RSA-2048 key pairs are generated and stored in Android Keystore (hardware-backed)</li>
+        <li><strong>Contacts</strong> — Public keys of your contacts are stored locally for encrypted sharing</li>
+        <li><strong>Preferences</strong> — App settings are stored in local shared preferences</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Encryption</h2>
+      <p>
+        Every note is encrypted before being saved. Each note gets a unique AES-256-GCM key,
+        which is then wrapped with your RSA-2048 public key. The private key never leaves the
+        Android Keystore hardware module.
+      </p>
+    </section>
+
+    <section>
+      <h2>Data Sharing</h2>
+      <p>
+        KeyScribe allows you to share encrypted notes as <code>.cnote</code> files.
+        These files are encrypted with the recipient's public key before sharing.
+        The sharing mechanism uses Android's built-in share sheet — KeyScribe does not
+        operate any servers for file transfer.
+      </p>
+    </section>
+
+    <section>
+      <h2>Backup & Restore</h2>
+      <p>
+        Backups are password-protected using PBKDF2-SHA256 (100,000 iterations) + AES-256-GCM.
+        Backup files are created locally and you control where they are stored.
+      </p>
+    </section>
+
+    <section>
+      <h2>Permissions</h2>
+      <p>KeyScribe requests only the minimum permissions necessary:</p>
+      <ul>
+        <li><strong>Camera</strong> — For scanning QR codes during key exchange (optional)</li>
+        <li><strong>Biometrics</strong> — For fingerprint/face unlock (optional)</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Third-Party Services</h2>
+      <p>KeyScribe does not integrate with any third-party services, SDKs, or APIs.</p>
+    </section>
+
+    <section>
+      <h2>Children's Privacy</h2>
+      <p>KeyScribe is not directed at children under 13. The app does not knowingly collect any personal information from anyone.</p>
+    </section>
+
+    <section>
+      <h2>Changes to This Policy</h2>
+      <p>Any updates to this privacy policy will be reflected on this page with an updated date.</p>
+    </section>
+
+    <section>
+      <h2>Contact</h2>
+      <p>If you have questions about this privacy policy, you can reach out via email at <a href="mailto:contact@keyscribe.app">contact@keyscribe.app</a>.</p>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .privacy {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 64px 24px 96px;
+  }
+
+  .privacy h1 {
+    font-family: var(--font-display);
+    font-size: 2.4rem;
+    color: var(--accent-bright);
+    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+  }
+
+  .updated {
+    font-size: 0.84rem;
+    color: var(--text-dim);
+    margin-bottom: 48px;
+  }
+
+  section {
+    margin-bottom: 36px;
+  }
+
+  section h2 {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    color: var(--accent);
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  section p {
+    font-size: 0.92rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 12px;
+  }
+
+  section ul {
+    list-style: disc;
+    padding-left: 20px;
+    margin-bottom: 12px;
+  }
+
+  section li {
+    font-size: 0.92rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 4px;
+  }
+
+  section li::marker {
+    color: var(--primary);
+  }
+
+  section code {
+    font-family: var(--font-mono);
+    font-size: 0.85em;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: var(--accent);
+  }
+
+  section a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    transition: border-color 0.2s;
+  }
+
+  section a:hover {
+    border-color: var(--accent-bright);
+  }
+</style>

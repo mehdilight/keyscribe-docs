@@ -1,0 +1,227 @@
+---
+import '../styles/global.css';
+import Icon from '../components/Icon.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'KeyScribe - End-to-end encrypted notes for Android' } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="nav-inner">
+        <a href="/" class="nav-logo">
+          <div class="nav-logo-mark">
+            <Icon name="key" size={15} />
+          </div>
+          <span>KeyScribe</span>
+        </a>
+        <div class="nav-links">
+          <a href="/docs/getting-started" class="nav-link">Guide</a>
+          <a href="/docs/encryption" class="nav-link">Security</a>
+          <a href="/privacy" class="nav-link">Privacy</a>
+        </div>
+      </div>
+    </nav>
+    <slot />
+    <footer class="footer">
+      <div class="footer-inner">
+        <div class="footer-left">
+          <a href="/" class="footer-logo">
+            <Icon name="key" size={14} />
+            <span>KeyScribe</span>
+          </a>
+          <p>End-to-end encrypted notes.</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-col">
+            <h5>Product</h5>
+            <a href="/docs/getting-started">Getting Started</a>
+            <a href="/docs/encryption">Security</a>
+            <a href="/docs/sharing">Sharing</a>
+          </div>
+          <div class="footer-col">
+            <h5>Resources</h5>
+            <a href="/docs/backup">Backup Guide</a>
+            <a href="/docs/contacts">Key Exchange</a>
+            <a href="/privacy">Privacy Policy</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 KeyScribe. Privacy first, always.</p>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style>
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    height: var(--nav-height);
+    background: rgba(8, 9, 10, 0.75);
+    backdrop-filter: blur(20px) saturate(1.2);
+    -webkit-backdrop-filter: blur(20px) saturate(1.2);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 24px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--accent);
+    text-decoration: none;
+    letter-spacing: 0.01em;
+  }
+
+  .nav-logo-mark {
+    width: 28px;
+    height: 28px;
+    border-radius: 7px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+  }
+
+  .nav-link {
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 0.84rem;
+    font-weight: 450;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s, background 0.2s;
+  }
+
+  .nav-link:hover {
+    color: var(--accent);
+    background: var(--surface-2);
+    text-decoration: none;
+  }
+
+  .nav-link-icon {
+    display: flex;
+    align-items: center;
+    padding: 6px 8px;
+    margin-left: 4px;
+  }
+
+  .footer {
+    border-top: 1px solid var(--border);
+    padding: 56px 24px 0;
+  }
+
+  .footer-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    gap: 48px;
+  }
+
+  .footer-left {
+    max-width: 260px;
+  }
+
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--accent);
+    text-decoration: none;
+    margin-bottom: 10px;
+  }
+
+  .footer-left p {
+    color: var(--text-dim);
+    font-size: 0.82rem;
+    line-height: 1.5;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 64px;
+  }
+
+  .footer-col {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .footer-col h5 {
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+  }
+
+  .footer-col a {
+    font-size: 0.82rem;
+    color: var(--text-dim);
+  }
+
+  .footer-col a:hover {
+    color: var(--text);
+  }
+
+  .footer-bottom {
+    max-width: var(--max-width);
+    margin: 40px auto 0;
+    padding: 20px 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .footer-bottom p {
+    font-size: 0.78rem;
+    color: var(--text-dim);
+  }
+
+  @media (max-width: 640px) {
+    .footer-inner {
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .footer-links {
+      gap: 40px;
+    }
+  }
+</style>

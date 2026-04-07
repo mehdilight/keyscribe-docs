@@ -1,0 +1,357 @@
+---
+import '../styles/global.css';
+import Icon from '../components/Icon.astro';
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+const currentPath = Astro.url.pathname;
+
+const sections = [
+  {
+    label: 'Getting Started',
+    items: [
+      { href: '/docs/getting-started', label: 'Introduction', icon: 'book-open' },
+    ],
+  },
+  {
+    label: 'Features',
+    items: [
+      { href: '/docs/encryption', label: 'Encryption', icon: 'shield' },
+      { href: '/docs/sharing', label: 'Note Sharing', icon: 'share' },
+      { href: '/docs/backup', label: 'Backup & Restore', icon: 'archive' },
+      { href: '/docs/contacts', label: 'Contacts & Keys', icon: 'users' },
+    ],
+  },
+  {
+    label: 'Configuration',
+    items: [
+      { href: '/docs/settings', label: 'Settings', icon: 'sliders-horizontal' },
+    ],
+  },
+];
+
+function isActive(href: string) {
+  return currentPath === href || currentPath === href + '/';
+}
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title} - KeyScribe Docs</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="nav-inner">
+        <a href="/" class="nav-logo">
+          <div class="nav-logo-mark">
+            <Icon name="key" size={15} />
+          </div>
+          <span>KeyScribe</span>
+        </a>
+        <div class="nav-links">
+          <a href="/docs/getting-started" class="nav-link active">Guide</a>
+          <a href="/docs/encryption" class="nav-link">Security</a>
+          <a href="/privacy" class="nav-link">Privacy</a>
+        </div>
+      </div>
+    </nav>
+    <div class="docs-layout">
+      <aside class="sidebar">
+        {sections.map((section) => (
+          <div class="sidebar-section">
+            <h4 class="sidebar-heading">{section.label}</h4>
+            <ul>
+              {section.items.map((item) => (
+                <li>
+                  <a
+                    href={item.href}
+                    class:list={['sidebar-link', { active: isActive(item.href) }]}
+                  >
+                    <Icon name={item.icon} size={15} class="sidebar-icon" />
+                    <span>{item.label}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </aside>
+      <main class="docs-content">
+        <article class="docs-article">
+          <slot />
+        </article>
+      </main>
+    </div>
+  </body>
+</html>
+
+<style>
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    height: var(--nav-height);
+    background: rgba(8, 9, 10, 0.75);
+    backdrop-filter: blur(20px) saturate(1.2);
+    -webkit-backdrop-filter: blur(20px) saturate(1.2);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 24px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .nav-logo-mark {
+    width: 28px;
+    height: 28px;
+    border-radius: 7px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+  }
+
+  .nav-link {
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 0.84rem;
+    font-weight: 450;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s, background 0.2s;
+  }
+
+  .nav-link:hover {
+    color: var(--accent);
+    background: var(--surface-2);
+    text-decoration: none;
+  }
+
+  .nav-link.active {
+    color: var(--accent);
+  }
+
+  .nav-link-icon {
+    display: flex;
+    align-items: center;
+    padding: 6px 8px;
+    margin-left: 4px;
+  }
+
+  .docs-layout {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    display: flex;
+    min-height: calc(100vh - var(--nav-height));
+  }
+
+  .sidebar {
+    width: var(--sidebar-width);
+    flex-shrink: 0;
+    padding: 24px 16px 40px 24px;
+    border-right: 1px solid var(--border);
+    position: sticky;
+    top: var(--nav-height);
+    height: calc(100vh - var(--nav-height));
+    overflow-y: auto;
+  }
+
+  .sidebar-section {
+    margin-bottom: 28px;
+  }
+
+  .sidebar-heading {
+    font-size: 0.68rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-dim);
+    margin-bottom: 6px;
+    padding-left: 10px;
+  }
+
+  .sidebar ul {
+    list-style: none;
+  }
+
+  .sidebar li {
+    margin-bottom: 1px;
+  }
+
+  .sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 7px 10px;
+    border-radius: 7px;
+    font-size: 0.84rem;
+    font-weight: 420;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: all 0.15s ease;
+  }
+
+  .sidebar-link :global(.sidebar-icon) {
+    opacity: 0.5;
+    flex-shrink: 0;
+    transition: opacity 0.15s;
+  }
+
+  .sidebar-link:hover {
+    color: var(--text);
+    background: var(--surface-2);
+    text-decoration: none;
+  }
+
+  .sidebar-link:hover :global(.sidebar-icon) {
+    opacity: 0.8;
+  }
+
+  .sidebar-link.active {
+    color: var(--accent);
+    background: var(--surface-2);
+  }
+
+  .sidebar-link.active :global(.sidebar-icon) {
+    opacity: 1;
+    color: var(--accent);
+  }
+
+  .docs-content {
+    flex: 1;
+    padding: 44px 60px 80px;
+    max-width: var(--content-width);
+    min-width: 0;
+    animation: fadeUp 0.4s ease both;
+  }
+
+  .docs-article :global(h1) {
+    font-family: var(--font-display);
+    font-size: 2.2rem;
+    font-weight: 400;
+    margin-bottom: 6px;
+    color: var(--accent);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+  }
+
+  .docs-article :global(h1 + p) {
+    color: var(--text-muted);
+    font-size: 1.02rem;
+    margin-bottom: 36px;
+    line-height: 1.6;
+  }
+
+  .docs-article :global(h2) {
+    font-family: var(--font-display);
+    font-size: 1.55rem;
+    font-weight: 400;
+    margin-top: 52px;
+    margin-bottom: 16px;
+    color: var(--accent);
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+    letter-spacing: -0.005em;
+  }
+
+  .docs-article :global(h3) {
+    font-size: 1.02rem;
+    font-weight: 600;
+    margin-top: 32px;
+    margin-bottom: 10px;
+    color: var(--primary);
+  }
+
+  .docs-article :global(p) {
+    margin-bottom: 16px;
+    color: var(--text);
+    line-height: 1.75;
+  }
+
+  .docs-article :global(ul),
+  .docs-article :global(ol) {
+    margin-bottom: 18px;
+    padding-left: 22px;
+  }
+
+  .docs-article :global(li) {
+    margin-bottom: 8px;
+    line-height: 1.65;
+  }
+
+  .docs-article :global(li::marker) {
+    color: var(--primary);
+  }
+
+  .docs-article :global(strong) {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .docs-article :global(a) {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    transition: border-color 0.2s;
+  }
+
+  .docs-article :global(a:hover) {
+    border-color: var(--accent-bright);
+  }
+
+  @media (max-width: 768px) {
+    .docs-layout {
+      flex-direction: column;
+    }
+
+    .sidebar {
+      width: 100%;
+      position: static;
+      height: auto;
+      border-right: none;
+      border-bottom: 1px solid var(--border);
+      padding: 16px 20px;
+    }
+
+    .sidebar ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2px;
+    }
+
+    .docs-content {
+      padding: 28px 24px 60px;
+    }
+  }
+</style>

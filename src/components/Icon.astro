@@ -1,0 +1,26 @@
+---
+import { readFileSync } from 'fs';
+import { resolve } from 'path';
+
+interface Props {
+  name: string;
+  size?: number;
+  class?: string;
+}
+
+const { name, size = 20, class: className = '' } = Astro.props;
+
+const iconPath = resolve(`node_modules/lucide-static/icons/${name}.svg`);
+let svgContent = '';
+try {
+  svgContent = readFileSync(iconPath, 'utf-8');
+  svgContent = svgContent
+    .replace(/width="[^"]*"/, `width="${size}"`)
+    .replace(/height="[^"]*"/, `height="${size}"`)
+    .replace('<svg', `<svg class="${className}"`);
+} catch {
+  svgContent = `<!-- icon "${name}" not found -->`;
+}
+---
+
+<Fragment set:html={svgContent} />
