@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Icon from '../components/Icon.astro';
+import { url } from '../utils/links';
 ---
 
 <BaseLayout title="KeyScribe - End-to-end encrypted notes">
@@ -17,11 +18,11 @@ import Icon from '../components/Icon.astro';
         Your private key never leaves the hardware.
       </p>
       <div class="hero-actions">
-        <a href="/docs/getting-started" class="btn btn-primary">
+        <a href={url('/docs/getting-started')} class="btn btn-primary">
           <span>Get Started</span>
           <Icon name="arrow-right" size={15} />
         </a>
-        <a href="/docs/encryption" class="btn btn-ghost">
+        <a href={url('/docs/encryption')} class="btn btn-ghost">
           <Icon name="shield" size={16} />
           <span>How it works</span>
         </a>
@@ -36,7 +37,7 @@ import Icon from '../components/Icon.astro';
         <p>Every feature is designed around a simple principle: your data belongs to you.</p>
       </div>
       <div class="features-grid">
-        <a href="/docs/encryption" class="feature-card">
+        <a href={url('/docs/encryption')} class="feature-card">
           <div class="feature-card-icon">
             <Icon name="shield" size={20} />
           </div>
@@ -46,7 +47,7 @@ import Icon from '../components/Icon.astro';
             Learn more <Icon name="arrow-right" size={13} />
           </span>
         </a>
-        <a href="/docs/sharing" class="feature-card">
+        <a href={url('/docs/sharing')} class="feature-card">
           <div class="feature-card-icon">
             <Icon name="share" size={20} />
           </div>
@@ -56,7 +57,7 @@ import Icon from '../components/Icon.astro';
             Learn more <Icon name="arrow-right" size={13} />
           </span>
         </a>
-        <a href="/docs/backup" class="feature-card">
+        <a href={url('/docs/backup')} class="feature-card">
           <div class="feature-card-icon">
             <Icon name="archive" size={20} />
           </div>
@@ -66,7 +67,7 @@ import Icon from '../components/Icon.astro';
             Learn more <Icon name="arrow-right" size={13} />
           </span>
         </a>
-        <a href="/docs/settings" class="feature-card">
+        <a href={url('/docs/settings')} class="feature-card">
           <div class="feature-card-icon">
             <Icon name="fingerprint" size={20} />
           </div>
@@ -76,7 +77,7 @@ import Icon from '../components/Icon.astro';
             Learn more <Icon name="arrow-right" size={13} />
           </span>
         </a>
-        <a href="/docs/getting-started" class="feature-card">
+        <a href={url('/docs/getting-started')} class="feature-card">
           <div class="feature-card-icon">
             <Icon name="eye" size={20} />
           </div>
@@ -86,7 +87,7 @@ import Icon from '../components/Icon.astro';
             Learn more <Icon name="arrow-right" size={13} />
           </span>
         </a>
-        <a href="/docs/contacts" class="feature-card">
+        <a href={url('/docs/contacts')} class="feature-card">
           <div class="feature-card-icon">
             <Icon name="qr-code" size={20} />
           </div>
@@ -177,7 +178,7 @@ import Icon from '../components/Icon.astro';
       <h2>100% free.<br />100% private.</h2>
       <p>No accounts. No cloud. No tracking.<br />Your notes belong to you.</p>
       <div class="cta-actions">
-        <a href="/docs/getting-started" class="btn btn-primary">
+        <a href={url('/docs/getting-started')} class="btn btn-primary">
           <span>Read the docs</span>
           <Icon name="arrow-right" size={15} />
         </a>

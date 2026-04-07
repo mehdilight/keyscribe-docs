@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import Icon from '../components/Icon.astro';
+import { url } from '../utils/links';
 
 interface Props {
   title: string;
@@ -8,27 +9,26 @@ interface Props {
 
 const { title } = Astro.props;
 const currentPath = Astro.url.pathname;
-
 const sections = [
   {
     label: 'Getting Started',
     items: [
-      { href: '/docs/getting-started', label: 'Introduction', icon: 'book-open' },
+      { href: url('/docs/getting-started'), label: 'Introduction', icon: 'book-open' },
     ],
   },
   {
     label: 'Features',
     items: [
-      { href: '/docs/encryption', label: 'Encryption', icon: 'shield' },
-      { href: '/docs/sharing', label: 'Note Sharing', icon: 'share' },
-      { href: '/docs/backup', label: 'Backup & Restore', icon: 'archive' },
-      { href: '/docs/contacts', label: 'Contacts & Keys', icon: 'users' },
+      { href: url('/docs/encryption'), label: 'Encryption', icon: 'shield' },
+      { href: url('/docs/sharing'), label: 'Note Sharing', icon: 'share' },
+      { href: url('/docs/backup'), label: 'Backup & Restore', icon: 'archive' },
+      { href: url('/docs/contacts'), label: 'Contacts & Keys', icon: 'users' },
     ],
   },
   {
     label: 'Configuration',
     items: [
-      { href: '/docs/settings', label: 'Settings', icon: 'sliders-horizontal' },
+      { href: url('/docs/settings'), label: 'Settings', icon: 'sliders-horizontal' },
     ],
   },
 ];
@@ -49,16 +49,16 @@ function isActive(href: string) {
   <body>
     <nav class="nav">
       <div class="nav-inner">
-        <a href="/" class="nav-logo">
+        <a href={url('/')} class="nav-logo">
           <div class="nav-logo-mark">
             <Icon name="key" size={15} />
           </div>
           <span>KeyScribe</span>
         </a>
         <div class="nav-links">
-          <a href="/docs/getting-started" class="nav-link active">Guide</a>
-          <a href="/docs/encryption" class="nav-link">Security</a>
-          <a href="/privacy" class="nav-link">Privacy</a>
+          <a href={url('/docs/getting-started')} class="nav-link active">Guide</a>
+          <a href={url('/docs/encryption')} class="nav-link">Security</a>
+          <a href={url('/privacy')} class="nav-link">Privacy</a>
         </div>
       </div>
     </nav>

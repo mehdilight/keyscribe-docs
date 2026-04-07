@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import Icon from '../components/Icon.astro';
+import { url } from '../utils/links';
 
 interface Props {
   title: string;
@@ -20,16 +21,16 @@ const { title, description = 'KeyScribe - End-to-end encrypted notes for Android
   <body>
     <nav class="nav">
       <div class="nav-inner">
-        <a href="/" class="nav-logo">
+        <a href={url('/')} class="nav-logo">
           <div class="nav-logo-mark">
             <Icon name="key" size={15} />
           </div>
           <span>KeyScribe</span>
         </a>
         <div class="nav-links">
-          <a href="/docs/getting-started" class="nav-link">Guide</a>
-          <a href="/docs/encryption" class="nav-link">Security</a>
-          <a href="/privacy" class="nav-link">Privacy</a>
+          <a href={url('/docs/getting-started')} class="nav-link">Guide</a>
+          <a href={url('/docs/encryption')} class="nav-link">Security</a>
+          <a href={url('/privacy')} class="nav-link">Privacy</a>
         </div>
       </div>
     </nav>
@@ -37,7 +38,7 @@ const { title, description = 'KeyScribe - End-to-end encrypted notes for Android
     <footer class="footer">
       <div class="footer-inner">
         <div class="footer-left">
-          <a href="/" class="footer-logo">
+          <a href={url('/')} class="footer-logo">
             <Icon name="key" size={14} />
             <span>KeyScribe</span>
           </a>
@@ -46,15 +47,15 @@ const { title, description = 'KeyScribe - End-to-end encrypted notes for Android
         <div class="footer-links">
           <div class="footer-col">
             <h5>Product</h5>
-            <a href="/docs/getting-started">Getting Started</a>
-            <a href="/docs/encryption">Security</a>
-            <a href="/docs/sharing">Sharing</a>
+            <a href={url('/docs/getting-started')}>Getting Started</a>
+            <a href={url('/docs/encryption')}>Security</a>
+            <a href={url('/docs/sharing')}>Sharing</a>
           </div>
           <div class="footer-col">
             <h5>Resources</h5>
-            <a href="/docs/backup">Backup Guide</a>
-            <a href="/docs/contacts">Key Exchange</a>
-            <a href="/privacy">Privacy Policy</a>
+            <a href={url('/docs/backup')}>Backup Guide</a>
+            <a href={url('/docs/contacts')}>Key Exchange</a>
+            <a href={url('/privacy')}>Privacy Policy</a>
           </div>
         </div>
       </div>
